@@ -1,0 +1,30 @@
+name: Deploy to inet via FTP
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout source
+        uses: actions/checkout@v4
+
+      - name: 📦 Upload files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: onehost-wphn032504.000nethost.com
+          username: ebhscltfhosting_annam  
+          password: Mk@11237756   
+          port: 21                        
+          protocol: ftp
+          local-dir: ./
+          server-dir: 1/
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            **/README.md
